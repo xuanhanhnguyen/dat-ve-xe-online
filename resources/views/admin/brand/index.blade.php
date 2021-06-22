@@ -32,7 +32,9 @@
                 <th>Người quản lý</th>
                 <th>Trạng thái</th>
                 <th class="text-center">
-                    <a href="{{route('brands.create')}}" class="btn btn-sm btn-primary ml-2">Thêm mới</a>
+                    @if(Auth::user()->role !== "member")
+                        <a href="{{route('brands.create')}}" class="btn btn-sm btn-primary ml-2">Thêm mới</a>
+                    @endif
                 </th>
             </tr>
             </thead>
@@ -65,8 +67,10 @@
 
                             <a class="btn btn-sm btn-warning" href="{{route('brands.show', $item->id)}}"><i
                                         class="fas fa-edit"></i></a>
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash-alt"></i></button>
+                            @if(Auth::user()->role !== "member")
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i></button>
+                            @endif
                         </form>
                     </td>
                 </tr>

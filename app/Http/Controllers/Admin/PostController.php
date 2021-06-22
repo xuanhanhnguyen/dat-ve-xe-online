@@ -16,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::all();
+        if (Auth::user()->role === "member") {
+            $data = Post::where('author', Auth::id())->get();
+        } else
+            $data = Post::all();
         return view('admin.post.index', compact('data'));
     }
 

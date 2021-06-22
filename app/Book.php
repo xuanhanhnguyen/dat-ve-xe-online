@@ -11,7 +11,7 @@ class Book extends Model
 
     protected $table = "books";
 
-    protected $fillable = ['car_id', 'name', 'phone', 'a_to_b', 'price', 'quantity', 'amount_total', 'status'];
+    protected $fillable = ['car_id', 'name', 'phone', 'a_to_b', 'price', 'quantity', 'time_start', 'amount_total', 'status'];
 
     public function car()
     {

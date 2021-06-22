@@ -56,7 +56,9 @@
             {{--brand--}}
             <div class="form-group {{ $errors->has('a_to_b') ? 'has-error' : '' }}">
                 <label for="a_to_b">Chọn tuyến:</label>
-                <select name="a_to_b" id="a_to_b" class="form-control" required>
+                <select name="a_to_b" id="a_to_b" class="form-control"
+                        onchange="$('#time_start').val('');if($(this).val() == 1){$('.time_start_a').show();$('.time_start_b').hide();}else{$('.time_start_a').hide();$('.time_start_b').show();}"
+                        required>
                     <option value="1" @if($data->a_to_b == 1) selected @endif>{{$car->start->name}}
                         <-> {{$car->end->name}}</option>
                     <option value="0" @if($data->a_to_b == 0) selected @endif>{{$car->end->name}}
@@ -65,6 +67,28 @@
                 @if($errors->has('a_to_b'))
                     <div class="help-block">
                         <strong>{{ $errors->first('a_to_b') }}</strong>
+                    </div>
+                @endif
+            </div>
+
+            {{--brand--}}
+            <div class="form-group {{ $errors->has('time_start') ? 'has-error' : '' }}">
+                <label for="time_start">Thời gian khởi hành:</label>
+                <select name="time_start" id="time_start" class="form-control" required>
+                    <option value="">chọn</option>
+                    @foreach(explode(',', $data->car->time_start_a) as $item)
+                        <option class="time_start_a" @if($data->a_to_b == 1 && $item == $data->time_start) selected @endif style="@if($data->a_to_b == 0) display: none; @endif"
+                                value="{{$item}}">{{$item}}</option>
+                    @endforeach
+
+                    @foreach(explode(',', $data->car->time_start_b) as $item)
+                        <option class="time_start_b" @if($data->a_to_b == 0 && $item == $data->time_start) selected @endif style="@if($data->a_to_b == 1) display: none; @endif"
+                                value="{{$item}}">{{$item}}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('time_start'))
+                    <div class="help-block">
+                        <strong>{{ $errors->first('time_start') }}</strong>
                     </div>
                 @endif
             </div>

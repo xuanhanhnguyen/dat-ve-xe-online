@@ -9,6 +9,7 @@ use App\Place;
 use App\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -34,7 +35,11 @@ class CarController extends Controller
      */
     public function index()
     {
-        $data = Car::all();
+        if (Auth::user()->role === "member") {
+            $data = Car::has('member')->get();
+        } else
+            $data = Car::all();
+
         return view('admin.car.index', compact('data'));
     }
 
@@ -45,8 +50,11 @@ class CarController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->role === "member") {
+            $brands = Brand::isActive()->where('owner', Auth::id())->get();
+        } else
+            $brands = Brand::isActive()->get();
         $places = $this->places();
-        $brands = Brand::isActive()->get();
         $utilities = Utility::isActive()->get();
         return view('admin.car.create', compact('places', 'brands', 'utilities'));
     }
@@ -94,9 +102,13 @@ class CarController extends Controller
      */
     public function show($id)
     {
+        if (Auth::user()->role === "member") {
+            $brands = Brand::isActive()->where('owner', Auth::id())->get();
+        } else
+            $brands = Brand::isActive()->get();
+
         $data = Car::find($id);
         $places = $this->places();
-        $brands = Brand::isActive()->get();
         $utilities = Utility::isActive()->get();
         return view('admin.car.edit', compact('data', 'places', 'brands', 'utilities'));
     }

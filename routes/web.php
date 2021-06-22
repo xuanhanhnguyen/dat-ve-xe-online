@@ -14,13 +14,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController');
+Route::get('/post/{id}', 'HomeController@post')->name('post');
+Route::get('/search', 'SearchController');
+Route::post('/book', 'HomeController@book')->name('home.book');
 
 Auth::routes();
 
-Route::group(['namespace' => 'Admin'], function () {
+Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/admin', 'AdminController@index');
 
     Route::group(['prefix' => 'admin'], function () {

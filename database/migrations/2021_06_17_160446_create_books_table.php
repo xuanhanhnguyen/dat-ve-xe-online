@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->boolean('a_to_b')->default(true);
             $table->unsignedInteger('stopover_station_a');
             $table->unsignedInteger('stopover_station_b');
+            $table->string('time_start')->nullable();
             $table->integer('price');
             $table->tinyInteger('quantity');
             $table->bigInteger('amount_total');

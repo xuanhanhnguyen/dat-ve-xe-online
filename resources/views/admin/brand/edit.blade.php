@@ -31,7 +31,7 @@
             {{--name--}}
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="content">Tên hãng xe<span class="text-danger">*</span></label>
-                <input type="text" name="name" id="name" value="{{$data->name }}"
+                <input @if(Auth::user()->role == "member") disabled @endif type="text" name="name" id="name" value="{{$data->name }}"
                        class="form-control" required>
                 @if($errors->has('name'))
                     <div class="help-block">
@@ -54,7 +54,7 @@
             {{--owner--}}
             <div class="form-group {{ $errors->has('owner') ? 'has-error' : '' }}">
                 <label for="owner">Người quản lý:</label>
-                <select name="owner" id="owner" class="form-control select2" required>
+                <select name="owner" @if(Auth::user()->role == "member") disabled @endif id="owner" class="form-control select2" required>
                     <option value="">Chọn</option>
                     @foreach($users as $item)
                         <option value="{{$item->id}}" @if($item->id == $data->owner) selected @endif>
@@ -72,7 +72,7 @@
             {{--status--}}
             <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
                 <label for="status">Trạng thái:</label>
-                <select name="status" id="status" class="form-control "
+                <select @if(Auth::user()->role == "member") disabled @endif name="status" id="status" class="form-control "
                         required>
                     @foreach(\App\Brand::STATUS as $key=>$item)
                         <option value="{{$key}}" @if($key == $data->status) selected @endif>{{$item}}</option>

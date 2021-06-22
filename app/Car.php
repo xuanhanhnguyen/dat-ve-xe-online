@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Car extends Model
 {
@@ -16,9 +17,24 @@ class Car extends Model
         'total_time', 'price', 'status'
     ];
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeIsBlock($query)
+    {
+        return $query->where('status', '<>', 1);
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function member()
+    {
+        return $this->brand()->where('owner', Auth::id());
     }
 
     public function start()

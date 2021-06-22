@@ -56,7 +56,7 @@
                             </li>
                             <li>
                                 <strong>Thời gian chạy:</strong> {{$item->total_time}} -
-                                <strong>Giá:</strong> {{$item->price}}
+                                <strong>Giá:</strong> {{_price($item->price)}}
                             </li>
                         </ul>
                     </td>

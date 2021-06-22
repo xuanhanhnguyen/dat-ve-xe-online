@@ -5,19 +5,10 @@
     <link rel="stylesheet" href="{{asset('/vendor/owl-carousel/assets/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
     <style>
-        .banner {
-            transition: all 200ms ease 0s;
-            width: 100%;
-            height: calc(100vh - 60px);
-            position: relative;
-        }
 
-        .banner img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            inset: 0px;
+        header {
+            box-shadow: rgb(0 0 0 / 5%) 0 3px 5px;
+            margin-bottom: 30px;
         }
 
         .banner form {
@@ -27,8 +18,11 @@
 
         .banner .btn-switch {
             background: white;
-            padding: 10px;
+            padding: 9px 10px;
             cursor: pointer;
+            border: 1px solid #dee2e6;
+            border-right: 0;
+            border-left: 0;
         }
 
         .banner select.form-control {
@@ -41,22 +35,31 @@
             min-height: 48px;
         }
 
-        .select2 {
+        .banner .select2 {
             min-height: 48px;
             display: flex;
             align-items: center;
             background: white;
+            border: 1px solid #dee2e6;
         }
 
-        .select2 .select2-selection__rendered {
+        .banner form .select2:nth-child(2) {
+            border-right: 0;
+        }
+
+        .banner form .select2:nth-child(5) {
+            border-left: 0;
+        }
+
+        .banner .select2 .select2-selection__rendered {
             min-width: 250px;
         }
 
-        .select2 .select2-selection--single {
+        .banner .select2 .select2-selection--single {
             border: 0 !important;
         }
 
-        .select2 .select2-selection__arrow {
+        .banner .select2 .select2-selection__arrow {
             top: 11px !important;
         }
 
@@ -80,25 +83,51 @@
         footer {
             background: 0% 0% no-repeat padding-box padding-box rgb(243, 243, 243);
         }
+
+        ul.pagination {
+            display: inline-flex;
+        }
+
+        ul.pagination li.disabled {
+            display: none;
+        }
+
+        ul.pagination li.active span {
+            color: #fff !important;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        ul.pagination li span, ul.pagination li a {
+            z-index: 1;
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+        ul.pagination li span {
+            background: white;
+            color: black !important;
+        }
     </style>
 @stop
 
 @section('content')
 
     <div class="banner">
-        <div class="img">
-            <img src="https:////static.vexere.com/production/banners/330/di-chuyen-an-toan_leaderboard_fix.png"
-                 alt="Đặt vé xe limousine của 1000+ hãng xe VIP đi toàn quốc" class="homepage__Banner-bs2n93-1 ibRfjx">
-        </div>
-
-        <form class="position-relative d-inline-flex justify-content-center align-items-center" action="/search"
-              method="get">
+        <form class="position-relative d-inline-flex justify-content-center align-items-center" action="/search">
             <select name="station_a" class="form-control w-auto select2">
                 <option value="">Chọn</option>
                 @foreach($places as $key => $item)
                     <optgroup label="{{\App\Place::GROUP[$key]}}">
                         @foreach($item as $_item)
-                            <option value="{{$_item->id}}">{{$_item->name}}</option>
+                            <option value="{{$_item->id}}"
+                                    @if(isset($_GET['station_a']) && $_item->id == $_GET['station_a']) selected @endif>{{$_item->name}}</option>
                         @endforeach
                     </optgroup>
                 @endforeach
@@ -123,14 +152,51 @@
                 @foreach($places as $key => $item)
                     <optgroup label="{{\App\Place::GROUP[$key]}}">
                         @foreach($item as $_item)
-                            <option value="{{$_item->id}}">{{$_item->name}}</option>
+                            <option value="{{$_item->id}}"
+                                    @if(isset($_GET['station_b']) && $_item->id == $_GET['station_b']) selected @endif>{{$_item->name}}</option>
                         @endforeach
                     </optgroup>
                 @endforeach
             </select>
 
-            <button id="btn-search" type="submit" class="btn btn-warning">Tìm chuyến</button>
+            <button id="btn-search" class="btn btn-warning">Tìm chuyến</button>
         </form>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tex-center">
+                    <h5 class="text-primary">{{$data->name}}</h5>
+                </div>
+
+                <div class="meta">
+                    <small><i class="fa fa-calendar"></i> {{$data->created_at->format('d/m/yy')}}</small>
+                </div>
+
+                <div class="content">
+                    {!! $data->content !!}
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <!--post like-->
+                <div class="fb-like"
+                     data-href="http://baonghia.demo1.fgct.net/"
+                     data-layout="standard" data-action="like"
+                     data-size="small"
+                     data-share="true"
+                     data-width="720"
+                     data-show-faces="true">
+                </div>
+                <!--post comment-->
+                <div class="fb-comments"
+                     data-href="http://baonghia.demo1.fgct.net/"
+                     data-numposts="5"
+                     data-width="100%">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="sale-hot mt-4">
@@ -177,7 +243,7 @@
                         <div style="background: rgb(245, 245, 245); padding: 12px;"
                              class="border-bottom ">
                             <div class="title">
-                                <a href=""><h6>{{$item->name}}</h6></a>
+                                <a href="{{route('post', $item->id)}}"><h6>{{$item->name}}</h6></a>
                             </div>
                             <div class="meta">
                                 <small><i class="fa fa-calendar"></i> {{$item->created_at->format('d/m/yy')}}</small>
@@ -255,5 +321,25 @@
         });
 
         $('.select2').select2();
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '',
+                xfbml: true,
+                version: 'v8.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+        (function (d, s, id) {
+            let js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/vi_VN/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
     </script>
 @stop

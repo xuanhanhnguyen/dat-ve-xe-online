@@ -146,15 +146,11 @@ return [
             'url' => 'admin/users/1/edit',
             'icon' => 'fas fa-fw fa-user',
         ],
-//        [
-//            'text' => 'Đổi mật khẩu',
-//            'url' => 'admin/user/change-password',
-//            'icon' => 'fas fa-fw fa-lock',
-//        ],
         [
             'text' => 'Tài khoản',
             'url' => 'admin/users',
             'icon' => 'fas fa-fw fa-users',
+            'permission' => 'admin',
             'submenu' => [
                 [
                     'text' => 'Thêm tài khoản',
@@ -194,6 +190,7 @@ return [
                     'text' => 'Thêm hãng xe',
                     'url' => 'admin/brands/create',
                     'icon_color' => 'aqua',
+                    'permission' => 'admin',
                 ],
                 [
                     'text' => 'Danh sách hãng xe',
@@ -221,6 +218,7 @@ return [
         [
             'text' => 'Quản lý tiện ích',
             'icon' => 'fas fa-fw fa-share',
+            'permission' => 'admin',
             'submenu' => [
                 [
                     'text' => 'Thêm tiện ích',
@@ -237,6 +235,7 @@ return [
         [
             'text' => 'Quản lý điểm đến',
             'icon' => 'fas fa-fw fa-share',
+            'permission' => 'admin',
             'submenu' => [
                 [
                     'text' => 'Thêm điểm đến',
@@ -290,6 +289,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
+        \App\Filters\MenuFilter::class
     ],
 
     /*

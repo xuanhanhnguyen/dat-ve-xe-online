@@ -7,6 +7,7 @@ use App\Brand;
 use App\Car;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -17,7 +18,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        $data = Book::all();
+        if (Auth::user()->role === "member") {
+            $cars = Car::has('member')->get()->toArray();
+            $data = Book::whereIn('car_id', array_column($cars, 'id'))->get();
+        } else
+            $data = Book::all();
         return view('admin.book.index', compact('data'));
     }
 
@@ -28,7 +33,10 @@ class BookController extends Controller
      */
     public function create()
     {
-        $brands = Brand::with('cars')->get();
+        if (Auth::user()->role === "member") {
+            $brands = Brand::with('cars')->where('owner', Auth::id())->get();
+        } else
+            $brands = Brand::with('cars')->get();
         return view('admin.book.create', compact('brands'));
     }
 
@@ -63,8 +71,11 @@ class BookController extends Controller
      */
     public function show($id)
     {
+        if (Auth::user()->role === "member") {
+            $brands = Brand::with('cars')->where('owner', Auth::id())->get();
+        } else
+            $brands = Brand::with('cars')->get();
         $data = Book::find($id);
-        $brands = Brand::with('cars')->get();
         return view('admin.book.edit', compact('data', 'brands'));
     }
 

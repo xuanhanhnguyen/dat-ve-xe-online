@@ -44,8 +44,8 @@
                     <td>
                         <li><strong>Hãng xe:</strong> {{$item->car->brand->name}}</li>
                         <li>
-                            <strong>Tuyến:</strong> {{$item->car->start->name}} <i
-                                    class="fas fa-fw fa-exchange-alt"></i> {{$item->car->end->name}}
+                            <strong>Tuyến:</strong> {{$item->a_to_b == 1 ? $item->car->start->name:$item->car->end->name}}
+                            <i class="fas fa-fw fa-exchange-alt"></i> {{$item->a_to_b == 1 ? $item->car->end->name:$item->car->start->name}}
                         </li>
                         <li>
                             <strong>Loại xe:</strong> {{$item->car->type_car}} - <strong>Số
@@ -53,7 +53,10 @@
                         </li>
                         <li>
                             <strong>Thời gian chạy:</strong> {{$item->car->total_time}} -
-                            <strong>Giá/1 vé:</strong> {{$item->car->price}}
+                            <strong>Giá/1 vé:</strong> {{_price($item->car->price)}}
+                        </li>
+                        <li>
+                            <strong>Thời gian khởi hành:</strong> {{$item->time_start}}
                         </li>
                     </td>
                     <td>
@@ -64,7 +67,7 @@
                         {{$item->quantity}}
                     </td>
                     <td>
-                        {{$item->amount_total}}
+                        {{_price($item->amount_total)}}
                     </td>
                     <td>{{\App\Book::STATUS[$item->status]}}</td>
                     <td class="text-center">
