@@ -136,7 +136,7 @@ class CarController extends Controller
         try {
             if ($request->hasFile('image')) {
                 $fileName = time() . '.' . $request->image->getClientOriginalExtension();
-                $request->image->move('uploads/utilities', $fileName);
+                $request->image->move('uploads/cars', $fileName);
             }
 
             $data = collect($request->all())->merge([
