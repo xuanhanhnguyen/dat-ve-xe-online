@@ -230,15 +230,19 @@
                                 </div>
                                 <div class="col-md-8 col-lg-9">
                                     <div class="d-flex align-item-center justify-content-between">
-                                        <h6 class="text-primary mb-0">{{$car->brand->name}}</h6>
+                                        <h6 class="text-primary mb-0"><b>{{$car->brand->name}}</b></h6>
                                         <h5 class="ml-3 text-primary mb-0">{{_price($car->price)}}</h5>
                                     </div>
                                     <p class="mb-0">
-                                        <small>{{$car->type_car}}</small>
+                                        <small><b>Biển số xe:</b> {{$car->license_plates}}</small>
+                                        <small class="ml-3"><b>Tài xế:</b> {{$car->driver}}</small>
+                                    </p>
+                                    <p class="mb-0">
+                                        <small><b>Loại xe:</b> {{$car->type_car}}</small>
                                     </p>
                                     <p class="mb-1">
-                                        <small>Giờ khởi
-                                            hành: {{$car->station_a == $_GET['station_a'] ? $car->time_start_a:$car->time_start_b}}</small>
+                                        <small><b>Giờ khởi
+                                                hành:</b> {{$car->station_a == $_GET['station_a'] ? $car->time_start_a:$car->time_start_b}}</small>
                                     </p>
                                     <div class="d-flex">
                                         <div>

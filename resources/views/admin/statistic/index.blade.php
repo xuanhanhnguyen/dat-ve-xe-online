@@ -10,6 +10,11 @@
     </ol>
 @stop
 
+@section('css')
+    <!-- Morris charts -->
+    <link rel="stylesheet" href="{{asset('vendor/adminlte/vendor/morris.js/morris.css')}}">
+@stop
+
 @section('content')
     <!-- BAR CHART -->
     <div class="box box-info">

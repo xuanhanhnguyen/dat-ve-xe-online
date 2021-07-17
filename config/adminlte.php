@@ -265,7 +265,12 @@ return [
                 ]
             ],
         ],
-//        ['header' => 'Thống kê'],
+        ['header' => 'Thống kê'],
+        [
+            'text' => 'Doanh thu',
+            'icon' => 'fas fa-fw fa-chart-line',
+            'url' => 'admin/statistic',
+        ],
     ],
 
 

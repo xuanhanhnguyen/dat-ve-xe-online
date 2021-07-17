@@ -177,7 +177,7 @@
                         <div style="background: rgb(245, 245, 245); padding: 12px;"
                              class="border-bottom ">
                             <div class="title">
-                                <a href=""><h6>{{$item->name}}</h6></a>
+                                <a href="{{route('post', $item->id)}}"><h6>{{$item->name}}</h6></a>
                             </div>
                             <div class="meta">
                                 <small><i class="fa fa-calendar"></i> {{$item->created_at->format('d/m/yy')}}</small>
