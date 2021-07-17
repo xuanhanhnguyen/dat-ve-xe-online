@@ -2,30 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class StatisticController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+
         if (Auth::user()->role === "member") {
 
             $charts = DB::select('SELECT MONTH(b.created_at) as thang, SUM(amount_total) as \'total\'
@@ -95,6 +82,6 @@ class AdminController extends Controller
                 GROUP BY br.id,br.hotline, br.name, br.owner, br.status, u.name, u.email, u.phone'
             );
         }
-        return view('admin.index', compact('data', 'label', 'value'));
+        return view('admin.statistic.index', compact('data', 'label', 'value'));
     }
 }

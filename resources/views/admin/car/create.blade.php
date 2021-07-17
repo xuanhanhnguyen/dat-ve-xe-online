@@ -45,6 +45,34 @@
             </div>
 
             <div class="row">
+                {{--license_plates--}}
+                <div class="form-group col-md-6 {{ $errors->has('license_plates') ? 'has-error' : '' }}">
+                    <label for="license_plates">Biển số xe:<span class="text-danger">*</span></label>
+                    <input type="text" name="license_plates" id="license_plates" value="{{ old('license_plates') }}"
+                           class="form-control" required>
+                    @if($errors->has('license_plates'))
+                        <div class="help-block">
+                            <strong>{{ $errors->first('license_plates') }}</strong>
+                        </div>
+                    @endif
+                </div>
+                {{--license_plates--}}
+
+                {{--driver--}}
+                <div class="form-group col-md-6 {{ $errors->has('driver') ? 'has-error' : '' }}">
+                    <label for="driver">Tài xế:<span class="text-danger">*</span></label>
+                    <input type="text" name="driver" id="driver" value="{{ old('driver') }}"
+                           class="form-control" required>
+                    @if($errors->has('driver'))
+                        <div class="help-block">
+                            <strong>{{ $errors->first('driver') }}</strong>
+                        </div>
+                    @endif
+                </div>
+                {{--driver--}}
+            </div>
+
+            <div class="row">
                 {{--utility--}}
                 <div class="form-group col-md-6">
                     <label for="utilities">Tiện ích:</label>
@@ -85,7 +113,7 @@
                     <label for="type_car">Loại xe:<span class="text-danger">*</span></label>
                     <input type="text" name="type_car" id="type_car" value="{{ old('type_car') }}"
                            class="form-control" required>
-                    @if($errors->has('name'))
+                    @if($errors->has('type_car'))
                         <div class="help-block">
                             <strong>{{ $errors->first('type_car') }}</strong>
                         </div>

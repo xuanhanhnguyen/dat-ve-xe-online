@@ -14,7 +14,7 @@ class Car extends Model
 
     protected $fillable = [
         'brand_id', 'image', 'type_car', 'number_seats', 'station_a', 'station_b', 'time_start_a', 'time_start_b',
-        'total_time', 'price', 'status'
+        'total_time', 'price', 'status', 'license_plates', 'driver'
     ];
 
     public function scopeIsActive($query)

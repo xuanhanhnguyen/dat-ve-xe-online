@@ -32,6 +32,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
         Route::resource('/posts', 'PostController');
         Route::resource('/books', 'BookController');
         Route::resource('/cars', 'CarController');
+        Route::resource('/statistic', 'StatisticController');
     });
 });
 
