@@ -182,7 +182,7 @@
             <div class="col-md-12 mt-3">
                 <!--post like-->
                 <div class="fb-like"
-                     data-href="http://baonghia.demo1.fgct.net/"
+                     data-href="http://fgc.vn/test-fb"
                      data-layout="standard" data-action="like"
                      data-size="small"
                      data-share="true"
@@ -191,7 +191,7 @@
                 </div>
                 <!--post comment-->
                 <div class="fb-comments"
-                     data-href="http://baonghia.demo1.fgct.net/"
+                     data-href="http://fgc.vn/test-fb"
                      data-numposts="5"
                      data-width="100%">
                 </div>

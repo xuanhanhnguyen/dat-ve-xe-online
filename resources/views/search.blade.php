@@ -233,6 +233,14 @@
                                         <h6 class="text-primary mb-0"><b>{{$car->brand->name}}</b></h6>
                                         <h5 class="ml-3 text-primary mb-0">{{_price($car->price)}}</h5>
                                     </div>
+                                    <!--post like-->
+                                    <div class="fb-like"
+                                         data-href="http://fgc.vn/test-fb-{{$car->id}}"
+                                         data-layout="standard" data-action="like"
+                                         data-size="small"
+                                         data-width="720"
+                                         data-show-faces="true">
+                                    </div>
                                     <p class="mb-0">
                                         <small><b>Biển số xe:</b> {{$car->license_plates}}</small>
                                         <small class="ml-3"><b>Tài xế:</b> {{$car->driver}}</small>
@@ -343,7 +351,7 @@
                                                              aria-labelledby="fb-{{$car->id}}">
                                                             <!--post like-->
                                                             <div class="fb-like"
-                                                                 data-href="http://baonghia.demo1.fgct.net/"
+                                                                 data-href="http://fgc.vn/test-fb-{{$car->id}}"
                                                                  data-layout="standard" data-action="like"
                                                                  data-size="small"
                                                                  data-share="true"
@@ -352,7 +360,7 @@
                                                             </div>
                                                             <!--post comment-->
                                                             <div class="fb-comments"
-                                                                 data-href="http://baonghia.demo1.fgct.net/"
+                                                                 data-href="http://fgc.vn/test-fb-{{$car->id}}"
                                                                  data-numposts="5"
                                                                  data-width="100%">
                                                             </div>

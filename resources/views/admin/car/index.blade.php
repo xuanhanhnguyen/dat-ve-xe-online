@@ -90,7 +90,7 @@
                                     <div class="modal-body">
                                         <!--post like-->
                                         <div class="fb-like"
-                                             data-href="http://baonghia.demo1.fgct.net/"
+                                             data-href="http://fgc.vn/test-fb-{{$item->id}}"
                                              data-layout="standard" data-action="like"
                                              data-size="small"
                                              data-share="true"
@@ -99,7 +99,7 @@
                                         </div>
                                         <!--post comment-->
                                         <div class="fb-comments"
-                                             data-href="http://baonghia.demo1.fgct.net/"
+                                             data-href="http://fgc.vn/test-fb-{{$item->id}}"
                                              data-numposts="5"
                                              data-width="100%">
                                         </div>
