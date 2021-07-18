@@ -49,6 +49,18 @@
                 @endif
             </div>
 
+            {{--brand--}}
+            <div class="form-group {{ $errors->has('date_start') ? 'has-error' : '' }}">
+                <label for="date_start">Ngày khởi hành:<span class="text-danger">*</span></label>
+                <input id="date_start" name="date_start" min="{{date('Y-m-d')}}" type="date" class="form-control"
+                       required value="{{ old('date_start') }}">
+                @if($errors->has('date_start'))
+                    <div class="help-block">
+                        <strong>{{ $errors->first('date_start') }}</strong>
+                    </div>
+                @endif
+            </div>
+
             {{--name--}}
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">Tên khách hàng:<span class="text-danger">*</span></label>

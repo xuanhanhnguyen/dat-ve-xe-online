@@ -27,6 +27,7 @@
         <table id="data-table" class="table table-bordered table-striped">
             <thead>
             <tr>
+                <th class="order_desc">Ngày đăt</th>
                 <th>Thông tin xe</th>
                 <th>Thông tin khách hàng</th>
                 <th>Số lượng</th>
@@ -41,6 +42,7 @@
 
             @foreach($data as $item)
                 <tr>
+                    <td>{{$item->created_at->format('d - m - Y')}}</td>
                     <td>
                         <li><strong>Hãng xe:</strong> {{$item->car->brand->name}}</li>
                         <li>
@@ -62,6 +64,9 @@
                     <td>
                         <li><strong>Họ & tên:</strong> {{$item->name}}</li>
                         <li><strong>Số điện thoại:</strong> {{$item->phone}}</li>
+                        <li><strong>Ngày khởi
+                                hành: {{$item->date_start ?  (new DateTime($item->date_start))->format('d - m - Y') : ''}}</strong>
+                        </li>
                     </td>
                     <td>
                         {{$item->quantity}}

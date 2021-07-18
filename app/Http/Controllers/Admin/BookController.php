@@ -20,9 +20,9 @@ class BookController extends Controller
     {
         if (Auth::user()->role === "member") {
             $cars = Car::has('member')->get()->toArray();
-            $data = Book::whereIn('car_id', array_column($cars, 'id'))->get();
+            $data = Book::whereIn('car_id', array_column($cars, 'id'))->latest('date_start')->get();
         } else
-            $data = Book::all();
+            $data = Book::latest('date_start')->get();
         return view('admin.book.index', compact('data'));
     }
 

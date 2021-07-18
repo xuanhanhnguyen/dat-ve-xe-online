@@ -104,7 +104,7 @@
                 @endforeach
             </select>
 
-            <div class="btn-switch">
+            <div id="btn-switch" class="btn-switch">
                 <svg class="DesktopSearchWidget2__IconExchangedStyled-sc-18055jv-1 bAWRMb"
                      xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
                     <g stroke="#0060c4">

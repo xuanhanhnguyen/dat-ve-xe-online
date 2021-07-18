@@ -133,7 +133,7 @@
                 @endforeach
             </select>
 
-            <div class="btn-switch">
+            <div id="btn-switch" class="btn-switch">
                 <svg class="DesktopSearchWidget2__IconExchangedStyled-sc-18055jv-1 bAWRMb"
                      xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
                     <g stroke="#0060c4">
@@ -250,7 +250,8 @@
                                     </p>
                                     <p class="mb-1">
                                         <small><b>Giờ khởi
-                                                hành:</b> {{$car->station_a == $_GET['station_a'] ? $car->time_start_a:$car->time_start_b}}</small>
+                                                hành:</b> {{$car->station_a == $_GET['station_a'] ? $car->time_start_a:$car->time_start_b}}
+                                        </small>
                                     </p>
                                     <div class="d-flex">
                                         <div>
@@ -271,12 +272,16 @@
 
                                         <div class="ml-3">
                                             <p class="mb-0">
-                                                • {{$car->station_a == $_GET['station_a'] ? $car->start->name: $car->end->name}}</p>
+                                                • @if($car->station_a == $_GET['station_a']) {{$car->start->name}}
+                                                ({{$car->starting_point_a}}) @else {{$car->end->name}}
+                                                ({{$car->starting_point_b}}) @endif</p>
                                             <p class="mb-0 text-muted">
                                                 <small>{{$car->total_time}}</small>
                                             </p>
                                             <p class="mb-0">
-                                                • {{$car->station_b == $_GET['station_b'] ? $car->end->name: $car->start->name}}</p>
+                                                • @if($car->station_b == $_GET['station_b']) {{$car->end->name}}
+                                                ({{$car->last_point_a}}) @else {{$car->start->name}}
+                                                ({{$car->last_point_b}}) @endif</p>
                                         </div>
                                     </div>
                                     <div class="mt-1 text-right">
@@ -284,7 +289,7 @@
                                                 data-target="#detail-{{$car->id}}">Xem chi tiết
                                         </button>
                                         <button class="btn btn-sm btn-warning px-4" data-toggle="modal"
-                                                onclick="form_dat_ve(`{{$car->id}}`, [{id: 0, value: `{{$car->start->name . '<->'.$car->end->name}}`}, {id: 0, value: `{{$car->end->name . '<->'.$car->start->name}}`}], parseInt(`{{$car->price}}`, 10), parseInt(`{{$car->station_a == $_GET['station_a'] ? 1:0}}`, 10), `{{$car->station_a == $_GET['station_a'] ? $car->time_start_a : $car->time_start_b}}`)"
+                                                onclick="form_dat_ve(`{{$car->id}}`, [{id: 0, value: `{{$car->start->name . '<->'.$car->end->name}}`}, {id: 0, value: `{{$car->end->name . '<->'.$car->start->name}}`}], parseInt(`{{$car->price}}`, 10), parseInt(`{{$car->station_a == $_GET['station_a'] ? 1:0}}`, 10), `{{$car->station_a == $_GET['station_a'] ? $car->time_start_a : $car->time_start_b}}`, `{{$car->station_a == $_GET['station_a'] ? $car->starting_point_a : $car->starting_point_b}}`, `{{$car->station_b == $_GET['station_b'] ? $car->last_point_a : $car->last_point_b}}`)"
                                                 data-target="#dat-ve">Đặt vé
                                         </button>
                                     </div>
@@ -551,13 +556,19 @@
 
         var _car_id = null, _price = null;
 
-        function form_dat_ve(car_id, route = [], price, a_to_b = 1, time_start = '') {
+        function form_dat_ve(car_id, route = [], price, a_to_b = 1, time_start = '', starting_point = '', last_point = '') {
 
             time_start = time_start.split(',');
-            console.log(time_start);
+            starting_point = starting_point.split(',');
+            last_point = last_point.split(',');
+
+            console.log(starting_point);
 
             _car_id = car_id;
             _price = price;
+
+            var d = new Date();
+            d = d.getFullYear() + '-' + ((d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1)) + '-' + (d.getDate() < 10 ? '0' + d.getDate() : d.getDate());
 
             let html = `<input type="hidden" value="" name="car_id">
                         <input type="hidden" value="" name="a_to_b">
@@ -582,11 +593,38 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="quantity">Giờ khởi hành:</label>
-                            <select class="form-control" name="time_start" id="time_start">
+                            <label for="date_start">Ngày khởi hành:</label>
+                            <input type="date" class="form-control" name="date_start" id="date_start" min="${d}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time_start">Giờ khởi hành:</label>
+                            <select class="form-control" name="time_start" id="time_start" required>
                             `;
             for (let i = 0; i < time_start.length; i++) {
                 html += `<option value="${time_start[i]}">${time_start[i]}</option>`;
+            }
+            html += `
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="starting_point">Điểm đón khách:</label>
+                            <select class="form-control" name="starting_point" id="starting_point" required>
+                            `;
+            for (let i = 0; i < starting_point.length; i++) {
+                html += `<option value="${starting_point[i]}">${starting_point[i]}</option>`;
+            }
+            html += `
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_point">Điểm trả khách:</label>
+                            <select class="form-control" name="last_point" id="last_point" required>
+                            `;
+            for (let i = 0; i < last_point.length; i++) {
+                html += `<option value="${last_point[i]}">${last_point[i]}</option>`;
             }
             html += `
                             </select>
@@ -622,14 +660,27 @@
             let phone = $('input#phone').val();
             let a_to_b = $('select#a_to_b').val();
             let time_start = $('select#time_start').val();
+            let date_start = $('select#date_start').val();
+            let starting_point = $('select#starting_point').val();
+            let last_point = $('select#last_point').val();
 
             $.ajax({
                 type: "POST",
                 url: '{{route("home.book")}}',
                 data: {
-                    quantity, name, phone, a_to_b, car_id: _car_id, _token: '{{csrf_token()}}', time_start
+                    quantity,
+                    name,
+                    phone,
+                    a_to_b,
+                    car_id: _car_id,
+                    _token: '{{csrf_token()}}',
+                    time_start,
+                    date_start,
+                    starting_point,
+                    last_point
                 },
             }).done(function (data) {
+                console.log(data);
                 $('#dat-ve').modal('hide');
                 alert(data);
             }).fail(function (data) {

@@ -46,6 +46,18 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+    $('#btn-switch').click(function () {
+        let a = $('select[name=station_a]');
+        let b = $('select[name=station_b]');
+
+        let v_a = a.val();
+        let v_b = b.val();
+
+        a.val(v_b).trigger('change');
+        b.val(v_a).trigger('change');
+    })
+</script>
 @yield('js')
 </body>
 </html>

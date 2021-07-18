@@ -196,6 +196,64 @@
                 </div>
             </div>
 
+            {{--starting_point--}}
+            <div class="row">
+                {{--starting_point a--}}
+                <div class="form-group col-md-6">
+                    <small class="text-muted">Địa điểm xuất phát:<span class="text-danger">*</span></small>
+                    <textarea type="text" name="starting_point_a" id="last_point_a"
+                              class="form-control" placeholder="" required>{{ $data->starting_point_a }}</textarea>
+                    <small class="text-muted">địa điêm 1, địa điểm 2, ...</small>
+                    @if($errors->has('starting_point_a'))
+                        <div class="help-block">
+                            <strong>{{ $errors->first('starting_point_a') }}</strong>
+                        </div>
+                    @endif
+                </div>
+                {{--starting_point b--}}
+                <div class="form-group col-md-6">
+                    <small class="text-muted">Địa điểm xuất phát:<span class="text-danger">*</span></small>
+                    <textarea type="text" name="starting_point_b" id="last_point_a"
+                              class="form-control" placeholder="" required>{{ $data->starting_point_b }}</textarea>
+                    <small class="text-muted">địa điêm 1, địa điểm 2, ...</small>
+                    @if($errors->has('starting_point_b'))
+                        <div class="help-block">
+                            <strong>{{ $errors->first('starting_point_b') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            {{----}}
+
+            {{--last_point--}}
+            <div class="row">
+                {{--starting_point a--}}
+                <div class="form-group col-md-6">
+                    <small class="text-muted">Địa điểm tra khách:<span class="text-danger">*</span></small>
+                    <textarea type="text" name="last_point_a" id="last_point_a"
+                              class="form-control" placeholder="" required>{{ $data->last_point_a }}</textarea>
+                    <small class="text-muted">địa điêm 1, địa điểm 2, ...</small>
+                    @if($errors->has('last_point_a'))
+                        <div class="help-block">
+                            <strong>{{ $errors->first('last_point_a') }}</strong>
+                        </div>
+                    @endif
+                </div>
+                {{--last_point b--}}
+                <div class="form-group col-md-6">
+                    <small class="text-muted">Địa điểm tra khách:<span class="text-danger">*</span></small>
+                    <textarea type="text" name="last_point_b" id="last_point_a"
+                              class="form-control" placeholder="" required>{{ $data->last_point_b }}</textarea>
+                    <small class="text-muted">địa điêm 1, địa điểm 2, ...</small>
+                    @if($errors->has('last_point_b'))
+                        <div class="help-block">
+                            <strong>{{ $errors->first('last_point_b') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            {{----}}
+
             <div class="row">
                 {{--Total time--}}
                 <div class="form-group col-md-6 {{ $errors->has('total_time') ? 'has-error' : '' }}">

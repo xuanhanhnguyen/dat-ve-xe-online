@@ -72,23 +72,87 @@
             </div>
 
             {{--brand--}}
+            <div class="form-group {{ $errors->has('date_start') ? 'has-error' : '' }}">
+                <label for="date_start">Ngày khởi hành:<span class="text-danger">*</span></label>
+                <input id="date_start" name="date_start" min="{{date('Y-m-d')}}" type="date" class="form-control"
+                       required value="{{ $data->date_start }}">
+                @if($errors->has('date_start'))
+                    <div class="help-block">
+                        <strong>{{ $errors->first('date_start') }}</strong>
+                    </div>
+                @endif
+            </div>
+
+            {{--brand--}}
             <div class="form-group {{ $errors->has('time_start') ? 'has-error' : '' }}">
-                <label for="time_start">Thời gian khởi hành:</label>
+                <label for="time_start">Thời gian khởi hành:<span class="text-danger">*</span></label>
                 <select name="time_start" id="time_start" class="form-control" required>
                     <option value="">chọn</option>
                     @foreach(explode(',', $data->car->time_start_a) as $item)
-                        <option class="time_start_a" @if($data->a_to_b == 1 && $item == $data->time_start) selected @endif style="@if($data->a_to_b == 0) display: none; @endif"
+                        <option class="time_start_a" @if($data->a_to_b == 1 && $item == $data->time_start) selected
+                                @endif style="@if($data->a_to_b == 0) display: none; @endif"
                                 value="{{$item}}">{{$item}}</option>
                     @endforeach
 
                     @foreach(explode(',', $data->car->time_start_b) as $item)
-                        <option class="time_start_b" @if($data->a_to_b == 0 && $item == $data->time_start) selected @endif style="@if($data->a_to_b == 1) display: none; @endif"
+                        <option class="time_start_b" @if($data->a_to_b == 0 && $item == $data->time_start) selected
+                                @endif style="@if($data->a_to_b == 1) display: none; @endif"
                                 value="{{$item}}">{{$item}}</option>
                     @endforeach
                 </select>
                 @if($errors->has('time_start'))
                     <div class="help-block">
                         <strong>{{ $errors->first('time_start') }}</strong>
+                    </div>
+                @endif
+            </div>
+            {{--brand--}}
+            <div class="form-group {{ $errors->has('starting_point') ? 'has-error' : '' }}">
+                <label for="starting_point">Điểm đón khách:<span class="text-danger">*</span></label>
+                <select name="starting_point" id="starting_point" class="form-control" required>
+                    <option value="">chọn</option>
+                    @foreach(explode(',', $data->car->starting_point_a) as $item)
+                        <option class="starting_start_a"
+                                @if($data->a_to_b == 1 && $item == $data->starting_point) selected
+                                @endif style="@if($data->a_to_b == 0) display: none; @endif"
+                                value="{{$item}}">{{$item}}</option>
+                    @endforeach
+
+                    @foreach(explode(',', $data->car->starting_point_b) as $item)
+                        <option class="starting_start_b"
+                                @if($data->a_to_b == 0 && $item == $data->starting_point) selected
+                                @endif style="@if($data->a_to_b == 1) display: none; @endif"
+                                value="{{$item}}">{{$item}}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('starting_point'))
+                    <div class="help-block">
+                        <strong>{{ $errors->first('starting_point') }}</strong>
+                    </div>
+                @endif
+            </div>
+
+
+            {{--brand--}}
+            <div class="form-group {{ $errors->has('last_point') ? 'has-error' : '' }}">
+                <label for="last_point">Điểm trả khách:<span class="text-danger">*</span></label>
+                <select name="last_point" id="last_point" class="form-control" required>
+                    <option value="">chọn</option>
+                    @foreach(explode(',', $data->car->last_point_a) as $item)
+                        <option class="last_start_a" @if($data->a_to_b == 1 && $item == $data->last_point) selected
+                                @endif style="@if($data->a_to_b == 0) display: none; @endif"
+                                value="{{$item}}">{{$item}}</option>
+                    @endforeach
+
+                    @foreach(explode(',', $data->car->last_point_b) as $item)
+                        <option class="last_start_b" @if($data->a_to_b == 0 && $item == $data->last_point) selected
+                                @endif style="@if($data->a_to_b == 1) display: none; @endif"
+                                value="{{$item}}">{{$item}}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('last_point'))
+                    <div class="help-block">
+                        <strong>{{ $errors->first('last_point') }}</strong>
                     </div>
                 @endif
             </div>
