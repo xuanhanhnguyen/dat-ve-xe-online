@@ -660,7 +660,7 @@
             let phone = $('input#phone').val();
             let a_to_b = $('select#a_to_b').val();
             let time_start = $('select#time_start').val();
-            let date_start = $('select#date_start').val();
+            let date_start = $('input#date_start').val();
             let starting_point = $('select#starting_point').val();
             let last_point = $('select#last_point').val();
 
@@ -680,7 +680,6 @@
                     last_point
                 },
             }).done(function (data) {
-                console.log(data);
                 $('#dat-ve').modal('hide');
                 alert(data);
             }).fail(function (data) {
