@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="{{asset('/vendor/owl-carousel/assets/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
     <style>
-        .banner {
+        .banner-new {
             transition: all 200ms ease 0s;
             width: 100%;
             height: calc(100vh - 60px);
             position: relative;
         }
 
-        .banner img {
+        .banner-new img {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -20,18 +20,18 @@
             inset: 0px;
         }
 
-        .banner form {
+        .banner-new form {
             width: 100%;
             height: 100%;
         }
 
-        .banner .btn-switch {
+        .banner-new .btn-switch {
             background: white;
             padding: 10px;
             cursor: pointer;
         }
 
-        .banner select.form-control {
+        .banner-new select.form-control {
             border-radius: 0;
             border-color: white;
             font-size: 18px;
@@ -60,19 +60,19 @@
             top: 11px !important;
         }
 
-        .banner select.form-control:focus {
+        .banner-new select.form-control:focus {
             box-shadow: none;
         }
 
-        .banner select.form-control[name='station_a'] {
+        .banner-new select.form-control[name='station_a'] {
             border-right: 0;
         }
 
-        .banner select.form-control[name='station_b'] {
+        .banner-new select.form-control[name='station_b'] {
             border-left: 0;
         }
 
-        .banner button#btn-search {
+        .banner-new button#btn-search {
             padding: 11px;
             border-radius: 0;
         }
@@ -85,7 +85,7 @@
 
 @section('content')
 
-    <div class="banner">
+    <div class="banner-new">
         <div class="img">
             <img src="https:////static.vexere.com/production/banners/330/di-chuyen-an-toan_leaderboard_fix.png"
                  alt="Đặt vé xe limousine của 1000+ hãng xe VIP đi toàn quốc" class="homepage__Banner-bs2n93-1 ibRfjx">

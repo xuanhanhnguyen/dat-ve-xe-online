@@ -11,12 +11,12 @@
             margin-bottom: 30px;
         }
 
-        .banner form {
+        .banner-new form {
             width: 100%;
             height: 100%;
         }
 
-        .banner .btn-switch {
+        .banner-new .btn-switch {
             background: white;
             padding: 9px 10px;
             cursor: pointer;
@@ -25,7 +25,7 @@
             border-left: 0;
         }
 
-        .banner select.form-control {
+        .banner-new select.form-control {
             border-radius: 0;
             border-color: white;
             font-size: 18px;
@@ -35,7 +35,7 @@
             min-height: 48px;
         }
 
-        .banner .select2 {
+        .banner-new .select2 {
             min-height: 48px;
             display: flex;
             align-items: center;
@@ -43,39 +43,39 @@
             border: 1px solid #dee2e6;
         }
 
-        .banner form .select2:nth-child(2) {
+        .banner-new form .select2:nth-child(2) {
             border-right: 0;
         }
 
-        .banner form .select2:nth-child(5) {
+        .banner-new form .select2:nth-child(5) {
             border-left: 0;
         }
 
-        .banner .select2 .select2-selection__rendered {
+        .banner-new .select2 .select2-selection__rendered {
             min-width: 250px;
         }
 
-        .banner .select2 .select2-selection--single {
+        .banner-new .select2 .select2-selection--single {
             border: 0 !important;
         }
 
-        .banner .select2 .select2-selection__arrow {
+        .banner-new .select2 .select2-selection__arrow {
             top: 11px !important;
         }
 
-        .banner select.form-control:focus {
+        .banner-new select.form-control:focus {
             box-shadow: none;
         }
 
-        .banner select.form-control[name='station_a'] {
+        .banner-new select.form-control[name='station_a'] {
             border-right: 0;
         }
 
-        .banner select.form-control[name='station_b'] {
+        .banner-new select.form-control[name='station_b'] {
             border-left: 0;
         }
 
-        .banner button#btn-search {
+        .banner-new button#btn-search {
             padding: 11px;
             border-radius: 0;
         }
@@ -119,7 +119,7 @@
 
 @section('content')
 
-    <div class="banner">
+    <div class="banner-new">
         <form class="position-relative d-inline-flex justify-content-center align-items-center" action="">
             <select name="station_a" class="form-control w-auto select2">
                 <option value="">Chọn</option>
